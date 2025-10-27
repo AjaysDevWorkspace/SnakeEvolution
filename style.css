@@ -282,6 +282,85 @@ footer {
   font-size: 1.06em;
 }
 
+/* Top-3 leaderboard styling */
+#leaderboard tr.rank-1 {
+  background: linear-gradient(180deg, rgba(255,243,199,0.06), rgba(255,243,199,0.02));
+  border: 1px solid rgba(255, 205, 0, 0.18);
+  box-shadow: 0 6px 18px rgba(255,205,0,0.06);
+  color: #fff;
+  font-weight: 700;
+  position: relative;
+  animation: medal-pulse 2.4s ease-in-out infinite;
+}
+
+#leaderboard tr.rank-2 {
+  background: linear-gradient(180deg, rgba(229,229,229,0.03), rgba(229,229,229,0.01));
+  border: 1px solid rgba(201,201,201,0.14);
+  color: #eef0f4;
+  font-weight: 600;
+}
+
+#leaderboard tr.rank-3 {
+  background: linear-gradient(180deg, rgba(205,170,125,0.02), rgba(205,170,125,0.005));
+  border: 1px solid rgba(160,110,45,0.08);
+  color: #fff4e8;
+  font-weight: 600;
+}
+
+/* medal badges in the Rank column */
+#leaderboard tr.rank-1 td:first-child::before,
+#leaderboard tr.rank-2 td:first-child::before,
+#leaderboard tr.rank-3 td:first-child::before {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 1.05em;
+  vertical-align: middle;
+}
+
+/* emoji medals */
+#leaderboard tr.rank-1 td:first-child::before { content: "🥇"; }
+#leaderboard tr.rank-2 td:first-child::before { content: "🥈"; }
+#leaderboard tr.rank-3 td:first-child::before { content: "🥉"; }
+
+/* optional glowing border for rank 1 (subtle) */
+@keyframes medal-pulse {
+  0% { box-shadow: 0 6px 18px rgba(255,205,0,0.06); transform: translateY(0px); }
+  50% { box-shadow: 0 12px 28px rgba(255,205,0,0.12); transform: translateY(-2px); }
+  100% { box-shadow: 0 6px 18px rgba(255,205,0,0.06); transform: translateY(0px); }
+}
+
+/* Ensure .me row styling still stands out and blends with rank classes */
+#leaderboard tr.me {
+  background: var(--accent2);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* When a .me row is also rank-1/2/3, make sure the 'me' style doesn't fully override medals:
+   prefer the medal background but keep emphasis */
+#leaderboard tr.me.rank-1 { background: linear-gradient(90deg, var(--accent2) 0%, rgba(255,205,0,0.08) 100%); }
+#leaderboard tr.me.rank-2 { background: linear-gradient(90deg, var(--accent2) 0%, rgba(200,200,200,0.06) 100%); }
+#leaderboard tr.me.rank-3 { background: linear-gradient(90deg, var(--accent2) 0%, rgba(160,110,45,0.03) 100%); }
+
+/* small responsive tweaks */
+@media (max-width: 520px) {
+  #leaderboard tr.rank-1 td:first-child::before,
+  #leaderboard tr.rank-2 td:first-child::before,
+  #leaderboard tr.rank-3 td:first-child::before {
+    margin-right: 6px;
+    font-size: 0.95em;
+  }
+  #leaderboard th, #leaderboard td { padding: 6px 4px; font-size: 0.95em; }
+}
+
+/* Accessibility: high-contrast fallback */
+@media (prefers-contrast: more) {
+  #leaderboard tr.rank-1 { border: 2px solid #ffd700; }
+  #leaderboard tr.rank-2 { border: 2px solid #c0c0c0; }
+  #leaderboard tr.rank-3 { border: 2px solid #b87333; }
+}
+
+
 @media (max-width:520px) {
   #game-area {
     min-width: unset;
