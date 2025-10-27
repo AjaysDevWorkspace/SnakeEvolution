@@ -397,6 +397,18 @@ function resetGame() {
 const startBtn = document.getElementById('startBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const resetBtn = document.getElementById('resetBtn');
+const pauseOverlay = document.getElementById('pause-overlay');
+
+function setPauseOverlay(visible) {
+    if (!pauseOverlay) return;
+    if (visible) {
+        pauseOverlay.classList.add('show');
+        pauseOverlay.setAttribute('aria-hidden', 'false');
+    } else {
+        pauseOverlay.classList.remove('show');
+        pauseOverlay.setAttribute('aria-hidden', 'true');
+    }
+}
 
 
 startBtn.onclick = () => {
@@ -404,6 +416,8 @@ startBtn.onclick = () => {
         if (snake.length > 1 || score > 0 || direction.x !== 0 || direction.y !== 0) {
             resetGame();
         }
+        // Ensure overlay is hidden when starting/resuming play
+        setPauseOverlay(false);
         gameRunning = true;
         pauseBtn.textContent = 'Pause';
         pauseBtn.disabled = false;
@@ -417,10 +431,14 @@ pauseBtn.onclick = () => {
         gameRunning = false;
         pauseBtn.textContent = 'Resume';
         document.body.classList.remove('game-active');
+        // Show overlay immediately when paused
+        setPauseOverlay(true);
     } else {
         gameRunning = true;
         pauseBtn.textContent = 'Pause';
         document.body.classList.add('game-active');
+        // Hide overlay when resuming
+        setPauseOverlay(false);
         if (!animationId) loop();
     }
 };
@@ -429,6 +447,7 @@ resetBtn.onclick = () => {
     pauseBtn.textContent = 'Pause';
     pauseBtn.disabled = true;
     resetBtn.disabled = true;
+    setPauseOverlay(false);
     resetGame();
 };
 
@@ -442,4 +461,6 @@ window.onload = function () {
     loadBestScore();
     initGameVars();
     draw();
+    // Ensure pause overlay hidden on load
+    setPauseOverlay(false);
 };
