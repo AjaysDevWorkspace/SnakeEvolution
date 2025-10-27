@@ -293,3 +293,44 @@ footer {
     max-height: 89vw;
   }
 }
+
+/* Pause overlay that appears above the game canvas when paused */
+#pause-overlay {
+  position: absolute;
+  /* Place overlay directly over the canvas (canvas is centered) */
+  top: 22px; /* matches #game-area padding-top */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  max-width: 96vw;
+  max-height: 70vw;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--white);
+  font-size: 34px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 1px;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+}
+
+#pause-overlay.show {
+  opacity: 1;
+  pointer-events: auto; /* block interactions when paused */
+}
+
+#pause-overlay .pause-text {
+  text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+@media (max-width:520px) {
+  #pause-overlay { top: 16px; }
+}
