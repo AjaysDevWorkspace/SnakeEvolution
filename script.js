@@ -17,6 +17,8 @@
     document.onkeydown = preventDefaultForScrollKeys;
 })();
 
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyDRDvlwalRpidbThvTEMK6FZVsDnK5FSOQ",
     authDomain: "snakeevolution-90ebd.firebaseapp.com",
@@ -329,11 +331,16 @@ function update() {
             document.getElementById('evoBox').textContent = '';
         }
     }
+
+    function playSound(){
+        new Audio('sounds/eating_sound.wav').play();
+    }
     // Self collision
     if (snake.some(seg => seg.x === head.x && seg.y === head.y)) return gameOver();
     snake.unshift(head);
     // Eat food
     if (head.x === food.x && head.y === food.y) {
+        playSound()
         score++;
         document.getElementById('score').textContent = score;
         food = randomEmptyTile();
@@ -412,18 +419,21 @@ startBtn.onclick = () => {
         if (!animationId) loop();
     }
 };
+
+const pauseOverlay = document.getElementById('pause-overlay');
+
 pauseBtn.onclick = () => {
-    if (gameRunning) {
-        gameRunning = false;
-        pauseBtn.textContent = 'Resume';
-        document.body.classList.remove('game-active');
-    } else {
-        gameRunning = true;
-        pauseBtn.textContent = 'Pause';
-        document.body.classList.add('game-active');
-        if (!animationId) loop();
-    }
+  if (gameRunning) {
+    gameRunning = false;
+    pauseBtn.textContent = 'Resume';
+    pauseOverlay.classList.add('show');
+  } else {
+    gameRunning = true;
+    pauseBtn.textContent = 'Pause';
+    pauseOverlay.classList.remove('show');
+  }
 };
+
 resetBtn.onclick = () => {
     gameRunning = false;
     pauseBtn.textContent = 'Pause';
