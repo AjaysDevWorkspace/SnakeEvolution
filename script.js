@@ -127,8 +127,18 @@ async function displayLeaderboard() {
             const data = doc.data();
             const uname = data.username || 'Unknown';
             const isMe = uname === uniqueUsername(user);
-            // Keep all rows in proper rank order, just highlight your row
-            html += `<tr${isMe ? ' class="me"' : ''}><td>${rank}</td><td>${uname}</td><td>${data.score}</td></tr>`;
+
+            // Determine styling class
+            let rankClass = "";
+            if (!isMe) {
+                if (rank === 1) rankClass = "rank-1";
+                else if (rank === 2) rankClass = "rank-2";
+                else if (rank === 3) rankClass = "rank-3";
+            } else {
+                rankClass = "me"; // Prioritize user's highlight if same row
+            }
+
+            html += `<tr class="${rankClass}"><td>${rank}</td><td>${uname}</td><td>${data.score}</td></tr>`;
             rank++;
         });
 

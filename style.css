@@ -265,6 +265,26 @@ main {
   font-weight: 600;
 }
 
+
+.rank-1 {
+  background: #ffd700 !important;
+  color: #000 !important;
+  font-weight: 700;
+}
+
+.rank-2 {
+  background: #c0c0c0 !important; 
+  color: #000 !important;
+  font-weight: 600;
+}
+
+.rank-3 {
+  background: #cd7f32 !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+
 #guest-message {
   margin-top: 13px;
   color: var(--accent2);
