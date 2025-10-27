@@ -428,10 +428,12 @@ pauseBtn.onclick = () => {
         gameRunning = false;
         pauseBtn.textContent = 'Resume';
         document.body.classList.remove('game-active');
+        pauseOverlay.classList.add('show');
     } else {
         gameRunning = true;
         pauseBtn.textContent = 'Pause';
         document.body.classList.add('game-active');
+        pauseOverlay.classList.remove('show');
         if (!animationId) loop();
     }
 };

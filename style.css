@@ -293,3 +293,30 @@ footer {
     max-height: 89vw;
   }
 }
+
+/* 🎨 Pause Overlay Styles */
+#pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10; /* above canvas */
+  color: #ff45a3;
+  font-size: 2em;
+  font-weight: bold;
+  text-shadow: 0 0 8px #000;
+  transition: opacity 0.3s ease;
+}
+
+#pause-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+#game-board {
+  position: relative;
+}
