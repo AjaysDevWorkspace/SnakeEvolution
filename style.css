@@ -214,7 +214,10 @@ main {
 }
 
 .game-btn:active {
-  transform: scale(0.96);
+  transform: translateY(1px);
+  background-color: #2aa314;
+  box-shadow: none;
+  transition: all 0.1s ease;
 }
 
 .game-btn:disabled {
@@ -282,6 +285,8 @@ footer {
   font-size: 1.06em;
 }
 
+
+
 @media (max-width:520px) {
   #game-area {
     min-width: unset;
@@ -293,3 +298,4 @@ footer {
     max-height: 89vw;
   }
 }
+
