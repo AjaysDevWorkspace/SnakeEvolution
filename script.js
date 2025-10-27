@@ -17,6 +17,8 @@
     document.onkeydown = preventDefaultForScrollKeys;
 })();
 
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyDRDvlwalRpidbThvTEMK6FZVsDnK5FSOQ",
     authDomain: "snakeevolution-90ebd.firebaseapp.com",
@@ -329,11 +331,16 @@ function update() {
             document.getElementById('evoBox').textContent = '';
         }
     }
+
+    function playSound(){
+        new Audio('sounds/eating_sound.wav').play();
+    }
     // Self collision
     if (snake.some(seg => seg.x === head.x && seg.y === head.y)) return gameOver();
     snake.unshift(head);
     // Eat food
     if (head.x === food.x && head.y === food.y) {
+        playSound()
         score++;
         document.getElementById('score').textContent = score;
         food = randomEmptyTile();
