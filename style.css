@@ -255,9 +255,25 @@ main {
   border-bottom: 1.5px solid #2a2a50;
 }
 
-#leaderboard tr:nth-child(even) {
+/* #leaderboard tr:nth-child(even) {
   background: #191838;
+} */
+
+#leaderboard tr:nth-child(2) {
+  background-color: #e3c212;
+  font-weight: bold;
 }
+
+#leaderboard tr:nth-child(3) {
+  background-color: silver;
+  font-weight: bold;
+}
+
+#leaderboard tr:nth-child(4) {
+  background-color: #cd7f32; 
+  font-weight: bold;
+}
+
 
 #leaderboard tr.me {
   background: var(--accent2);
@@ -293,3 +309,5 @@ footer {
     max-height: 89vw;
   }
 }
+
+
