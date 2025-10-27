@@ -419,18 +419,21 @@ startBtn.onclick = () => {
         if (!animationId) loop();
     }
 };
+
+const pauseOverlay = document.getElementById('pause-overlay');
+
 pauseBtn.onclick = () => {
-    if (gameRunning) {
-        gameRunning = false;
-        pauseBtn.textContent = 'Resume';
-        document.body.classList.remove('game-active');
-    } else {
-        gameRunning = true;
-        pauseBtn.textContent = 'Pause';
-        document.body.classList.add('game-active');
-        if (!animationId) loop();
-    }
+  if (gameRunning) {
+    gameRunning = false;
+    pauseBtn.textContent = 'Resume';
+    pauseOverlay.classList.add('show');
+  } else {
+    gameRunning = true;
+    pauseBtn.textContent = 'Pause';
+    pauseOverlay.classList.remove('show');
+  }
 };
+
 resetBtn.onclick = () => {
     gameRunning = false;
     pauseBtn.textContent = 'Pause';
