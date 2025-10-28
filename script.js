@@ -398,6 +398,17 @@ const startBtn = document.getElementById('startBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const resetBtn = document.getElementById('resetBtn');
 
+// --- Add button click sound ---
+const clickSound = new Audio('images/click.wav');
+
+[startBtn, pauseBtn, resetBtn].forEach(btn => {
+  btn.addEventListener('click', () => {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  });
+});
+
+
 
 startBtn.onclick = () => {
     if (!gameRunning) {
