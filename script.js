@@ -147,6 +147,16 @@ const canvas = document.getElementById('gameBoard');
 const ctx = canvas.getContext('2d');
 const box = 20; // cell size
 let snake, direction, nextDirection, food, score, evo, evoActive, evoTimer, gameRunning, frameCount, moveDelay, animationId;
+// 🎵 Preload sound for food consumption
+const foodSound = new Audio('assets/food.mp3');
+
+function playSound(effectName) {
+    if (effectName === 'food') {
+        foodSound.currentTime = 0; 
+        foodSound.play().catch(err => console.log("Audio play error:", err));
+    }
+}
+
 // For Powerup
 let slowTime = null;
 let slowTimeActive = false;
@@ -337,6 +347,7 @@ function update() {
         score++;
         document.getElementById('score').textContent = score;
         food = randomEmptyTile();
+        playSound('food');
         if (!evo && Math.random() < 0.22) evo = randomEmptyTile();
         if (!slowTime && Math.random() < 0.18) slowTime = randomEmptyTile();
     } else if (evo && head.x === evo.x && head.y === evo.y) {
@@ -417,10 +428,12 @@ pauseBtn.onclick = () => {
         gameRunning = false;
         pauseBtn.textContent = 'Resume';
         document.body.classList.remove('game-active');
+        pauseOverlay.classList.add('show');
     } else {
         gameRunning = true;
         pauseBtn.textContent = 'Pause';
         document.body.classList.add('game-active');
+        pauseOverlay.classList.remove('show');
         if (!animationId) loop();
     }
 };
