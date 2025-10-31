@@ -208,19 +208,28 @@ main {
   padding: 7px 16px;
   font-weight: 700;
   font-size: 1em;
-  transition: transform .11s, background .19s;
+  /* IMPORTANT: Added vertical offset shadow for 'lift' */
+  box-shadow: 0 4px 0 #2eac10; /* Darker shade of accent for the 'bottom' */
+  transition: all 0.1s ease; /* Changed from separate transforms/backgrounds to 'all' for simplicity */
   cursor: pointer;
-  box-shadow: 0 2px 8px #18142a27;
 }
 
 .game-btn:active {
-  transform: scale(0.96);
+  /* 1. Darker background-color */
+  background: #2eac10; /* Slightly darker green than --accent */
+  /* 2. Small downward shift (3px) */
+  transform: translateY(4px); /* Shift down by the height of the box-shadow */
+  /* 3. Remove shadow to simulate 'pushed-in' */
+  box-shadow: 0 0 0 #2eac10; /* Shadow is gone, button is flush */
 }
 
 .game-btn:disabled {
   background: #353741;
   color: #888;
   cursor: not-allowed;
+  /* Ensure disabled buttons stay 'unpressed' */
+  box-shadow: none; /* remove the lifted shadow when disabled */
+  transform: none;
 }
 
 #leaderboard-section {
