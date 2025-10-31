@@ -202,7 +202,17 @@ document.addEventListener('keydown', function (e) {
     if (!gameRunning) { startBtn.click(); }
 });
 
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'a' && direction.x !== 1) nextDirection = { x: -1, y: 0 };
+    if (e.key === 'w' && direction.y !== 1) nextDirection = { x: 0, y: -1 };
+    if (e.key === 'd' && direction.x !== -1) nextDirection = { x: 1, y: 0 };
+    if (e.key === 's' && direction.y !== -1) nextDirection = { x: 0, y: 1 };
 
+    if ((direction.x === 0 && direction.y === 0) && (nextDirection.x !== 0 || nextDirection.y !== 0)) {
+        direction = { ...nextDirection };
+    }
+    if (!gameRunning) { startBtn.click(); }
+});
 
 let bestScore = Number(localStorage.getItem('snake_best') || 0);
 
