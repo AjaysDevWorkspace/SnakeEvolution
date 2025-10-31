@@ -27,7 +27,7 @@ Designed for both nostalgic players and newcomers, this game combines old‑scho
 
 ## 🕹️ How to Play
 
-1. **Use arrow keys** to control the snake’s direction.  
+1. **Use arrow keys** or **WASD keys** to control the snake’s direction.  
 2. **Eat yellow food** to grow and earn points.  
 3. **Collect pink powerups** to enter Evolution Mode and pass through walls briefly.  
 4. **Avoid collisions** with walls or your own tail (unless evolved).  
