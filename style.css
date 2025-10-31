@@ -212,9 +212,17 @@ main {
   cursor: pointer;
   box-shadow: 0 2px 8px #18142a27;
 }
+.game-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+    letter-spacing: 0.5px;
+}
 
 .game-btn:active {
-  transform: scale(0.96);
+  transform: scale(0.93);
+  background: var(--bg);
+  color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
 }
 
 .game-btn:disabled {
